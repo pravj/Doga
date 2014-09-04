@@ -1,12 +1,38 @@
 import re
+import sys
 
 
 class PayloadParser:
 
     def __init__(self):
-        self.pattern = re.compile(r"(GET|HEAD|POST|PUT|DELETE|TRACE|OPTIONS|CONNECT|PATCH)\s(\/.*)\s(HTTP\/.*)\nHost:\s(.*)")
+        self.method = '(GET|HEAD|POST|PUT|DELETE|TRACE|OPTIONS|CONNECT|PATCH)'
+        self.path = '(\/.*)'
+        self.http_type = '(HTTP\/1.[0-1])'
+
+        self.req_regex = "%s\s%s\s%s" % (self.method, self.path, self.http_type)
+        self.host_regex = "Host:\s(.*)\r"
+        self.useragent_regex = "User-Agent:\s(.*)\r"
 
     def parse(self, data, addr, ports):
-        #print data
-        result = (self.pattern).match(data)
-        print result.group(1), result.group(2), result.group(3), result.group(4)
+        """ Parse request method, path, host, useragent, httptype etc.
+
+        param: data(str) : packet payload string
+        param: addr(list) : list object having source and destination IP address
+        param: ports(list) : list object having source and destination ports
+        """
+
+        req_str = re.search(self.req_regex, data)
+        host_str = re.search(self.host_regex, data)
+        useragent_str = re.search(self.useragent_regex, data)
+
+        try:
+            method = req_str.group(1)
+            path = req_str.group(2)
+            http_type = req_str.group(3)
+            host = host_str.group(1)
+            useragent = useragent_str.group(1)
+
+            print (method, path, http_type, host, useragent)
+        except:
+            print 'unable to parse packet payload'
+            sys.exit()
