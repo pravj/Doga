@@ -1,6 +1,8 @@
 import socket
 import struct
 
+from payload_parser import PayloadParser
+
 ETH_LENGTH = 14
 
 
@@ -8,6 +10,7 @@ class PacketParser:
 
     def __init__(self, ip):
         self.ip = ip
+        self.payload_parser = PayloadParser()
 
     def parse_ip_header(self, packet_string):
         """ Parse required info from packret according IP Header structure
@@ -59,7 +62,7 @@ class PacketParser:
         param: ports (list object) : source and destination connection ports
         """
 
-        return True if 80 in ports and self.ip in addr else False
+        return True if 80 in ports and self.ip == addr[0] else False
 
     def parse(self, packet_string):
         """ Parse required info from packet according Ethernet Header structure
@@ -79,5 +82,7 @@ class PacketParser:
             if (packet_protocol == 6):
                 data, ports = self.parse_tcp_header(packet_string, iph_len)
 
-                if self.verify_packet_data(addr, ports):
-                    print data
+                if (len(data) != 0):
+
+                    if self.verify_packet_data(addr, ports):
+                        self.payload_parser.parse(data, addr, ports)

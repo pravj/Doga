@@ -66,3 +66,5 @@ class SocketInterface:
             packet_str = packet_tuple[0]
 
             self.packet_parser.parse(packet_str)
+
+si = SocketInterface()
