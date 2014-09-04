@@ -55,14 +55,18 @@ class PacketParser:
 
         return (data, [source_port, dest_port])
 
-    def verify_packet_data(self, addr, ports):
+    def verify_packet_data(self, data, addr, ports):
         """ Verify the packet to filter HTTP packets
 
-        param: addr (list object) : source and destination connection addresses
-        param: ports (list object) : source and destination connection ports
+        param: data(str) : packet payload string
+        param: addr(list) : source and destination connection addresses
+        param: ports(list) : source and destination connection ports
         """
 
-        return True if 80 in ports and self.ip == addr[0] else False
+        is_http = True if 80 in ports and self.ip == addr[0] else False
+        verified = is_http and (len(data) != 0)
+
+        return verified
 
     def parse(self, packet_string):
         """ Parse required info from packet according Ethernet Header structure
@@ -82,7 +86,5 @@ class PacketParser:
             if (packet_protocol == 6):
                 data, ports = self.parse_tcp_header(packet_string, iph_len)
 
-                if (len(data) != 0):
-
-                    if self.verify_packet_data(addr, ports):
-                        self.payload_parser.parse(data, addr, ports)
+                if self.verify_packet_data(data, addr, ports):
+                    self.payload_parser.parse(data, addr, ports)

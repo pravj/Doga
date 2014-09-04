@@ -1,3 +1,12 @@
+# -*- coding: utf-8 -*-
+
+"""
+Doga.payload_parser
+
+This module parse payload string and collect information from it
+these involves method, host, resource path, section, http_type, useragent.
+"""
+
 import re
 import sys
 
@@ -31,8 +40,9 @@ class PayloadParser:
             http_type = req_str.group(3)
             host = host_str.group(1)
             useragent = useragent_str.group(1)
+            section = path.split('?')[0]
 
-            print (method, path, http_type, host, useragent)
+            print (method, path, http_type, host, useragent, section)
         except:
             print 'unable to parse packet payload'
             sys.exit()
