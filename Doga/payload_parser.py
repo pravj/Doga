@@ -10,10 +10,14 @@ these involves method, host, resource path, section, http_type, useragent.
 import re
 import sys
 
+from log_generator import LogGenerator
+
 
 class PayloadParser:
 
     def __init__(self):
+        self.log_generator = LogGenerator()
+
         self.method = '(GET|HEAD|POST|PUT|DELETE|TRACE|OPTIONS|CONNECT|PATCH)'
         self.path = '(\/.*)'
         self.http_type = '(HTTP\/1.[0-1])'
@@ -42,7 +46,10 @@ class PayloadParser:
             useragent = useragent_str.group(1)
             section = path.split('?')[0]
 
-            print (method, path, http_type, host, useragent, section)
+            self.log_generator.generate(method, path, http_type, host, useragent, section)
         except:
+            #print req_str.groups()
+            print host_str.groups()
+            print useragent_str.groups()
             print 'unable to parse packet payload'
             sys.exit()

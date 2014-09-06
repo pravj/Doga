@@ -1,12 +1,17 @@
+# -*- coding: utf-8 -*-
+
 import os
 import time
 
+from statistics import Statistics
 from config import DOGA_LOGS
 
 
 class LogGenerator:
 
     def __init__(self):
+        self.statistics = Statistics()
+
         self.log_file_path = None
         self.log_file = None
 
@@ -36,19 +41,20 @@ class LogGenerator:
             f.write(log_string)
             f.close()
 
-    def generate(self, method, host, path, useragent):
+    def generate(self, method, path, http_type, host, useragent, section):
         """ write log string for each request
 
         param: method(str) : request method type
-        param: host(str) : host requested
         param: path(str) : resource path
+        param: http_type(str) : HTTP type (1.1/1.0)
+        param: host(str) : host requested
         param: useragent(str) : user-agent for requesting source
+        param: section(str) : section for request's resource path
         """
 
         timestr = self.timestamp()
-        log_str = "%s %s %s %s %s\n" % (timestr, method, host, path, useragent)
+        log_str = "%s [%s] \"%s %s %s\" \"%s\"\n" % (host, timestr, method, path, http_type, useragent)
 
         self.write_log(log_str)
 
-#lg = LogGenerator()
-#lg.write_log("alpha beta\n")
+        self.statistics.queue_event(method, host, section)
