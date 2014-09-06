@@ -10,7 +10,7 @@ import sys
 import socket
 import struct
 
-from config import HTTPBIN_ADDR
+from configer import value
 from packet_parser import PacketParser
 
 
@@ -32,7 +32,7 @@ class SocketInterface:
         """
 
         sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-        sock.connect((HTTPBIN_ADDR, 80))
+        sock.connect((value('httpbin'), 80))
 
         try:
             ipv4 = sock.getsockname()[0]

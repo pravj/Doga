@@ -4,7 +4,7 @@ import os
 import time
 
 from statistics import Statistics
-from config import DOGA_LOGS
+from configer import value
 
 
 class LogGenerator:
@@ -23,7 +23,7 @@ class LogGenerator:
 
         home_dir = os.path.expanduser('~')
 
-        self.log_file_path = os.path.join(home_dir, DOGA_LOGS)
+        self.log_file_path = os.path.join(home_dir, value('logfile'))
         self.log_file = os.path.abspath(self.log_file_path)
 
     def timestamp(self):
