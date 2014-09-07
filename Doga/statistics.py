@@ -10,6 +10,7 @@ Shows data summary periodically in each 10 seconds
 import threading
 from collections import Counter
 
+from configer import value
 from thread_timer import ThreadTimer
 
 
@@ -77,5 +78,9 @@ class Statistics():
         """ call for an alert if request count is not in threshold range
         """
 
-        if (len(self.alert_queue) > 5):
-            print "Alert %d" % (len(self.alert_queue))
+        minimum, maximum = value('minimum'), value('maximum')
+
+        if (len(self.alert_queue) > maximum):
+            print "Alert : requests more than maximum %d" % (len(self.alert_queue))
+        if (len(self.alert_queue) < minimum):
+            print "Alert : request less than minimum %d" % (len(self.alert_queue))
