@@ -34,6 +34,9 @@ class Statistics:
         self.stats_scanner = ThreadTimer(1, self.stop_event, self.check_stats)
         self.stats_scanner.start()
 
+        self.doga_logs = []
+        self.alert_history = []
+
         self.stats_template = "Maximum: [No recent requests], Recent: 0, Total: 0"
         self.alert_template = "Traffic status: Normal, Alert state: No"
 
@@ -48,6 +51,12 @@ class Statistics:
         elif (type == 'stats'):
             return self.stats_template
 
+    def value(self, type):
+        if (type == 'logs'):
+            return self.doga_logs
+        elif (type == 'history'):
+            return self.alert_history
+
     def queue_event(self, method, host, section):
         """ Queue each request to be used in statistics
 
@@ -58,6 +67,8 @@ class Statistics:
 
         self.queue.append(host + section)
         self.alert_queue.append(host + section)
+
+        self.doga_logs.append("%s %s" % (host, section))
 
     def update_statistics(self):
         """ return resource section info having maximum hits and count of total hits
@@ -99,9 +110,11 @@ class Statistics:
                 self.is_alert = False
                 self.alert_end = time.strftime("%H:%M:%S")
                 self.alert_template = "Traffic status: Normal, Alert state: No, Max Hits: %d, Recovered at: %s" % (len(self.alert_queue), self.alert_end)
+                self.alert_history.append(self.alert_template)
         # we are alert free now
         else:
             if (len(self.alert_queue) > maximum):
                 self.is_alert = True
                 self.alert_start = time.strftime("%H:%M:%S")
                 self.alert_template = "Traffic status: High, Alert state: Yes, Max Hits: %d, Triggered at: %s" % (len(self.alert_queue),self.alert_start)
+                self.alert_history.append(self.alert_template)

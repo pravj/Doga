@@ -28,12 +28,20 @@ class DogaGUI(npyscreen.NPSApp):
         self.alert_history = None
 
         self.template = statistics.template
+        self.value = statistics.value
 
     def while_waiting(self):
         self.alert_status.value = "%s" % self.template('alert')
         self.doga_status.value = "%s" % self.template('stats')
+        self.doga_logs.values = self.value('logs')
+        self.doga_logs.values = self.doga_logs.values[::-1]
+        self.alert_history.values = self.value('history')
+        self.alert_history.values = self.alert_history.values[::-1]
+
         self.alert_status.display()
         self.doga_status.display()
+        self.doga_logs.display()
+        self.alert_history.display()
         
     def main(self):
         self.keypress_timeout_default = 10
