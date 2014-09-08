@@ -28,7 +28,8 @@ class Statistics:
         self.stats_timer = ThreadTimer(10, self.stop_event, self.update_queue)
         self.stats_timer.start()
 
-        self.alert_timer = ThreadTimer(10, self.stop_event, self.update_alert_queue)
+        self.alert_timer = ThreadTimer(
+            10, self.stop_event, self.update_alert_queue)
         self.alert_timer.start()
 
         self.stats_scanner = ThreadTimer(1, self.stop_event, self.check_stats)
@@ -83,7 +84,8 @@ class Statistics:
 
             status = "[%s : %d]" % (frequency[0][0], frequency[0][1])
 
-        self.stats_template = "Maximum : %s, Recent : %d, Total : %d" % (status, len(self.queue), self.total)
+        self.stats_template = "Maximum : %s, Recent : %d, Total : %d" % (
+            status, len(self.queue), self.total)
 
     def update_queue(self):
         """ update the queue periodically and call for 'max_queue' method
@@ -109,12 +111,18 @@ class Statistics:
             if (len(self.alert_queue) < maximum):
                 self.is_alert = False
                 self.alert_end = time.strftime("%H:%M:%S")
-                self.alert_template = "Traffic status: Normal, Alert state: No, Max Hits: %d, Recovered at: %s" % (len(self.alert_queue), self.alert_end)
+                status_string = "Max Hits: %d, Triggered at: %s" % (
+                    len(self.alert_queue), self.alert_start)
+                self.alert_template = "Traffic: Normal, Alert state: No, %s" % (
+                    status_string)
                 self.alert_history.append(self.alert_template)
         # we are alert free now
         else:
             if (len(self.alert_queue) > maximum):
                 self.is_alert = True
                 self.alert_start = time.strftime("%H:%M:%S")
-                self.alert_template = "Traffic status: High, Alert state: Yes, Max Hits: %d, Triggered at: %s" % (len(self.alert_queue),self.alert_start)
+                status_string = "Max Hits: %d, Triggered at: %s" % (
+                    len(self.alert_queue), self.alert_start)
+                self.alert_template = "Traffic: High, Alert state: Yes, %s" % (
+                    status_string)
                 self.alert_history.append(self.alert_template)

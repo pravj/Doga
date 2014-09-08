@@ -17,7 +17,8 @@ class Doga:
         self.desc = 'HTTP log monitoring console for Humans'
         self.parser = argparse.ArgumentParser(description=(self.desc))
 
-        self.parser.add_argument('-f', dest='file', type=str, default=None, help='custom log file')
+        self.parser.add_argument(
+            '-f', dest='file', type=str, default=None, help='custom log file')
 
         args = vars(self.parser.parse_args())
 

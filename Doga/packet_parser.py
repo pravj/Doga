@@ -11,10 +11,10 @@ class PacketParser:
 
     def parse_ip_header(self, packet_string):
         """ Parse required info from packret according IP Header structure
-        Reference : Wikipedia (http://en.wikipedia.org/wiki/IPv4#Header)
+        Reference: http://en.wikipedia.org/wiki/IPv4#Header
         """
 
-        iph = packet_string[ETH_LENGTH:20+ETH_LENGTH]
+        iph = packet_string[ETH_LENGTH:20 + ETH_LENGTH]
         unpacked_iph = struct.unpack('!BBHHHBBH4s4s', iph)
 
         iph_first_byte = unpacked_iph[0]
@@ -31,12 +31,12 @@ class PacketParser:
 
     def parse_tcp_header(self, packet_string, iph_length):
         """ Parse required info from packet according TCP Header structure
-        Reference : Wikipedia (http://en.wikipedia.org/wiki/Transmission_Control_Protocol#TCP_segment_structure)
+        Reference: http://en.wikipedia.org/wiki/Transmission_Control_Protocol#TCP_segment_structure
         """
 
         shift = iph_length + ETH_LENGTH
 
-        tcph = packet_string[shift:shift+20]
+        tcph = packet_string[shift:shift + 20]
         unpacked_tcph = struct.unpack('!HHLLBBHHH', tcph)
 
         source_port = unpacked_tcph[0]
@@ -67,9 +67,9 @@ class PacketParser:
 
     def parse(self, ip, packet_string):
         """ Parse required info from packet according Ethernet Header structure
-        Reference : Wikipedia (http://en.wikipedia.org/wiki/Ethernet_frame#Structure)
+        Reference: http://en.wikipedia.org/wiki/Ethernet_frame#Structure
 
-        param: packet_string (str object) : packet string from packet tuple object
+        param: packet_string(str): packet string from packet tuple object
         """
 
         eth_h = packet_string[:ETH_LENGTH]
@@ -78,7 +78,8 @@ class PacketParser:
         eth_protocol = socket.ntohs(unpacked_eth_h[2])
 
         if (eth_protocol == 8):
-            iph_len, packet_protocol, addr = self.parse_ip_header(packet_string)
+            iph_len, packet_protocol, addr = self.parse_ip_header(
+                packet_string)
 
             if (packet_protocol == 6):
                 data, ports = self.parse_tcp_header(packet_string, iph_len)

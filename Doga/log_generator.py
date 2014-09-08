@@ -52,7 +52,8 @@ class LogGenerator:
         """
 
         timestr = self.timestamp()
-        log_str = "%s [%s] \"%s %s %s\" \"%s\"\n" % (host, timestr, method, path, http_type, useragent)
+        log_str = "%s [%s] \"%s %s %s\" \"%s\"\n" % (
+            host, timestr, method, path, http_type, useragent)
 
         self.statistics.queue_event(method, host, section)
         self.write_log(log_str)

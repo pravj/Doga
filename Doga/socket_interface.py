@@ -25,7 +25,7 @@ class SocketInterface:
         self.capture(self.raw_socket)
 
     def ipv4(self):
-        """ return local IP Address (str) of system (IPV4 type)
+        """ return local IP Address(str) of system(IPV4 type)
 
         though this method depends on availability of 'httpbin.org'
         """
@@ -43,11 +43,12 @@ class SocketInterface:
         return ipv4
 
     def create_raw_socket(self):
-        """ Create row socket (SOCK_RAW) to listen for traffic
+        """ Create row socket(SOCK_RAW type) to listen for traffic
         """
 
         try:
-            self.raw_socket = socket.socket(socket.AF_PACKET, socket.SOCK_RAW, socket.ntohs(0x0003))
+            self.raw_socket = socket.socket(
+                socket.AF_PACKET, socket.SOCK_RAW, socket.ntohs(0x0003))
         except socket.error, msg:
             print "unable to create socket"
             print "Error Code %d : Message %s" % (msg[0], msg[1])
@@ -56,7 +57,7 @@ class SocketInterface:
     def capture(self, sock):
         """ Capture packets in traffic
 
-        param: sock (socket._socketobject) : raw socket that listen for all traffic
+        param: sock(socket._socketobject): raw socket that listen for traffic
         """
 
         while True:
