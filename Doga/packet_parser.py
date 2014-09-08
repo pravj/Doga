@@ -1,16 +1,13 @@
 import socket
 import struct
 
-from payload_parser import PayloadParser
-
 ETH_LENGTH = 14
 
 
 class PacketParser:
 
-    def __init__(self, ip):
-        self.ip = ip
-        self.payload_parser = PayloadParser()
+    def __init__(self, payload_parser):
+        self.payload_parser = payload_parser
 
     def parse_ip_header(self, packet_string):
         """ Parse required info from packret according IP Header structure
@@ -55,7 +52,7 @@ class PacketParser:
 
         return (data, [source_port, dest_port])
 
-    def verify_packet_data(self, data, addr, ports):
+    def verify_packet_data(self, ip, data, addr, ports):
         """ Verify the packet to filter HTTP packets
 
         param: data(str) : packet payload string
@@ -63,12 +60,12 @@ class PacketParser:
         param: ports(list) : source and destination connection ports
         """
 
-        is_http = True if 80 in ports and self.ip == addr[0] else False
+        is_http = True if 80 in ports and ip == addr[0] else False
         verified = is_http and (len(data) != 0)
 
         return verified
 
-    def parse(self, packet_string):
+    def parse(self, ip, packet_string):
         """ Parse required info from packet according Ethernet Header structure
         Reference : Wikipedia (http://en.wikipedia.org/wiki/Ethernet_frame#Structure)
 
@@ -86,5 +83,5 @@ class PacketParser:
             if (packet_protocol == 6):
                 data, ports = self.parse_tcp_header(packet_string, iph_len)
 
-                if self.verify_packet_data(data, addr, ports):
+                if self.verify_packet_data(ip, data, addr, ports):
                     self.payload_parser.parse(data, addr, ports)

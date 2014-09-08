@@ -5,11 +5,13 @@ Doga.configer
 
 This module gives other modules access to use configuration values
 """
-
+import os
 from ConfigParser import SafeConfigParser
 
+config_file = os.path.abspath(os.path.join(os.path.dirname(__file__), 'config.ini'))
+
 parser = SafeConfigParser()
-parser.read('config.ini')
+parser.read(config_file)
 
 
 def value(key):

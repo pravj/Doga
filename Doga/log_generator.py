@@ -3,14 +3,13 @@
 import os
 import time
 
-from statistics import Statistics
 from configer import value
 
 
 class LogGenerator:
 
-    def __init__(self):
-        self.statistics = Statistics()
+    def __init__(self, statistics):
+        self.statistics = statistics
 
         self.log_file_path = None
         self.log_file = None
@@ -55,6 +54,5 @@ class LogGenerator:
         timestr = self.timestamp()
         log_str = "%s [%s] \"%s %s %s\" \"%s\"\n" % (host, timestr, method, path, http_type, useragent)
 
-        self.write_log(log_str)
-
         self.statistics.queue_event(method, host, section)
+        self.write_log(log_str)

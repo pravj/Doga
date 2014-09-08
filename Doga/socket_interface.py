@@ -11,16 +11,15 @@ import socket
 import struct
 
 from configer import value
-from packet_parser import PacketParser
 
 
 class SocketInterface:
 
-    def __init__(self):
+    def __init__(self, packet_parser):
         self.ip = self.ipv4()
         self.raw_socket = None
 
-        self.packet_parser = PacketParser(self.ip)
+        self.packet_parser = packet_parser
 
         self.create_raw_socket()
         self.capture(self.raw_socket)
@@ -65,6 +64,4 @@ class SocketInterface:
             packet_tuple = sock.recvfrom(65565)
             packet_str = packet_tuple[0]
 
-            self.packet_parser.parse(packet_str)
-
-si = SocketInterface()
+            self.packet_parser.parse(self.ip, packet_str)

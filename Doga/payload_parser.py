@@ -10,13 +10,11 @@ these involves method, host, resource path, section, http_type, useragent.
 import re
 import sys
 
-from log_generator import LogGenerator
-
 
 class PayloadParser:
 
-    def __init__(self):
-        self.log_generator = LogGenerator()
+    def __init__(self, log_generator):
+        self.log_generator = log_generator
 
         self.method = '(GET|HEAD|POST|PUT|DELETE|TRACE|OPTIONS|CONNECT|PATCH)'
         self.path = '(\/.*)'

@@ -13,7 +13,6 @@ from collections import Counter
 
 from configer import value
 from thread_timer import ThreadTimer
-#from gui import DogaGUI
 
 
 class Statistics:
@@ -29,13 +28,13 @@ class Statistics:
         self.stats_timer = ThreadTimer(10, self.stop_event, self.update_queue)
         self.stats_timer.start()
 
-        self.alert_timer = ThreadTimer(30, self.stop_event, self.update_alert_queue)
+        self.alert_timer = ThreadTimer(10, self.stop_event, self.update_alert_queue)
         self.alert_timer.start()
 
         self.stats_scanner = ThreadTimer(1, self.stop_event, self.check_stats)
         self.stats_scanner.start()
 
-        self.stats_template = ""
+        self.stats_template = "Maximum: [No recent requests], Recent: 0, Total: 0"
         self.alert_template = "Traffic status: Normal, Alert state: No"
 
         self.is_alert = False
@@ -43,8 +42,11 @@ class Statistics:
         self.alert_start = ""
         self.alert_end = ""
 
-        #self.app = DogaGUI(self)
-        #self.app.run()
+    def template(self, type):
+        if (type == 'alert'):
+            return self.alert_template
+        elif (type == 'stats'):
+            return self.stats_template
 
     def queue_event(self, method, host, section):
         """ Queue each request to be used in statistics
@@ -96,10 +98,10 @@ class Statistics:
             if (len(self.alert_queue) < maximum):
                 self.is_alert = False
                 self.alert_end = time.strftime("%H:%M:%S")
-                self.alert_status = "Traffic status: Normal Alert state: No Max Hits: %d Recovered at: %s" % (len(self.alert_queue), self.alert_end)
+                self.alert_template = "Traffic status: Normal, Alert state: No, Max Hits: %d, Recovered at: %s" % (len(self.alert_queue), self.alert_end)
         # we are alert free now
         else:
             if (len(self.alert_queue) > maximum):
                 self.is_alert = True
                 self.alert_start = time.strftime("%H:%M:%S")
-                self.alert_status = "Traffic status: High Alert state: Yes Max Hits: %d Triggered at: %s" % (len(self.alert_queue), self.alert_start)
+                self.alert_template = "Traffic status: High, Alert state: Yes, Max Hits: %d, Triggered at: %s" % (len(self.alert_queue),self.alert_start)
