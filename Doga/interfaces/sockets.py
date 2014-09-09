@@ -10,7 +10,7 @@ import sys
 import socket
 import struct
 
-from configer import value
+from ..config.configer import value
 
 
 class SocketInterface:

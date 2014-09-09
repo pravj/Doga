@@ -11,7 +11,7 @@ import time
 import threading
 from collections import Counter
 
-from configer import value
+from .config.configer import value
 from thread_timer import ThreadTimer
 
 
@@ -131,7 +131,7 @@ class Statistics:
             if (len(self.alert_queue) < maximum):
                 self.is_alert = False
                 self.alert_end = time.strftime("%H:%M:%S")
-                status_string = "Max Hits: %d, Triggered at: %s" % (
+                status_string = "Max Hits: %d, Recovered at: %s" % (
                     len(self.alert_queue), self.alert_start)
                 self.alert_template = "Traffic: Normal, Alert state: No, %s" % (
                     status_string)

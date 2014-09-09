@@ -2,11 +2,11 @@
 
 import argparse
 
-from Doga.gui import DogaGUI
-from Doga.socket_interface import SocketInterface
-from Doga.packet_parser import PacketParser
-from Doga.payload_parser import PayloadParser
-from Doga.log_generator import LogGenerator
+from Doga.interfaces.gui import DogaGUI
+from Doga.interfaces.sockets import SocketInterface
+from Doga.parsers.packet import PacketParser
+from Doga.parsers.payload import PayloadParser
+from Doga.logs.generator import LogGenerator
 from Doga.statistics import Statistics
 from Doga.thread_timer import ThreadJob
 
