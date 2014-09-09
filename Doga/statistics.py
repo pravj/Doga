@@ -18,48 +18,68 @@ from thread_timer import ThreadTimer
 class Statistics:
 
     def __init__(self):
+        # list object having all requests of a timespan
         self.queue = []
+        # total number of requests so far
         self.total = 0
 
+        # all requests of a timespan, to be used for alert status
         self.alert_queue = []
 
         self.stop_event = threading.Event()
 
+        # callback update_queue method using thread
         self.stats_timer = ThreadTimer(10, self.stop_event, self.update_queue)
         self.stats_timer.start()
 
+        # callback update_alert_queue method using thread
         self.alert_timer = ThreadTimer(
             10, self.stop_event, self.update_alert_queue)
         self.alert_timer.start()
 
+        # callback check_stats method using thread
         self.stats_scanner = ThreadTimer(1, self.stop_event, self.check_stats)
         self.stats_scanner.start()
 
+        # log data and alert history values
         self.doga_logs = []
         self.alert_history = []
 
+        # alert and usage status templates
         self.stats_template = "Maximum: [No recent requests], Recent: 0, Total: 0"
         self.alert_template = "Traffic status: Normal, Alert state: No"
 
+        # alert state
         self.is_alert = False
 
+        # timestamps representing alert start and end time
         self.alert_start = ""
         self.alert_end = ""
 
     def template(self, type):
+        """ return a template value
+
+        param: type(str): type of the template (alert or stats)
+        """
+
         if (type == 'alert'):
             return self.alert_template
         elif (type == 'stats'):
             return self.stats_template
 
     def value(self, type):
+        """ return value of private data
+
+        param: type(str): type of data to return
+        """
+
         if (type == 'logs'):
             return self.doga_logs
         elif (type == 'history'):
             return self.alert_history
 
     def queue_event(self, method, host, section):
-        """ Queue each request to be used in statistics
+        """ queue each request to be used in statistics
 
         param: method(str) : request method type
         param: host(str) : requested resource host
@@ -72,7 +92,7 @@ class Statistics:
         self.doga_logs.append("%s %s" % (host, section))
 
     def update_statistics(self):
-        """ return resource section info having maximum hits and count of total hits
+        """ update usage stats template having maximum hits and count of total hits
         """
 
         self.total += len(self.queue)
@@ -88,7 +108,7 @@ class Statistics:
             status, len(self.queue), self.total)
 
     def update_queue(self):
-        """ update the queue periodically and call for 'max_queue' method
+        """ update the doga statistics and queue periodically
         """
 
         self.update_statistics()
@@ -101,7 +121,7 @@ class Statistics:
         self.alert_queue = []
 
     def check_stats(self):
-        """ call for an alert if request count is not in threshold range
+        """ check for requests and update the alert status according to that 
         """
 
         maximum = int(value('maximum'))

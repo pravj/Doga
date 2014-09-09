@@ -1,3 +1,12 @@
+# -*- coding: utf-8 -*-
+
+"""
+Doga.packet_parser
+
+This module parse traffic packet and filter HTTP packets among them.
+further packets are parsed and info related to IP/TCP Headers is collected
+"""
+
 import socket
 import struct
 
@@ -58,6 +67,7 @@ class PacketParser:
         param: data(str) : packet payload string
         param: addr(list) : source and destination connection addresses
         param: ports(list) : source and destination connection ports
+        param: ip(str): local IP address of machine
         """
 
         is_http = True if 80 in ports and ip == addr[0] else False
@@ -69,6 +79,7 @@ class PacketParser:
         """ Parse required info from packet according Ethernet Header structure
         Reference: http://en.wikipedia.org/wiki/Ethernet_frame#Structure
 
+        param: ip(str): local IP address of machine
         param: packet_string(str): packet string from packet tuple object
         """
 

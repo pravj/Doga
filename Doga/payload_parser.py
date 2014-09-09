@@ -3,8 +3,8 @@
 """
 Doga.payload_parser
 
-This module parse payload string and collect information from it
-these involves method, host, resource path, section, http_type, useragent.
+This module parse payload string and collect information from that.
+info involves (method, host, resource path, section, http_type, useragent).
 """
 
 import re
