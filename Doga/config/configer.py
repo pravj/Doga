@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 """
-Doga.configer
+Doga.config.configer
 
 This module gives other modules access to use configuration values
 """

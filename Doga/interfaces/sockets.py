@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 """
-Doga.socket_interface
+Doga.interfaces.sockets
 
 This module does some Socket related tasks for Doga.
 """

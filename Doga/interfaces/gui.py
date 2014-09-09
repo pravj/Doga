@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 """
-Doga.gui
+Doga.interfaces.gui
 
 This module manages Doga GUI and keep it updated in realtime.
 """

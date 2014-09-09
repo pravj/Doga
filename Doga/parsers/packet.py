@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 """
-Doga.packet_parser
+Doga.parsers.packet
 
 This module parse traffic packet and filter HTTP packets among them.
 further packets are parsed and info related to IP/TCP Headers is collected

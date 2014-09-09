@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 """
-Doga.payload_parser
+Doga.parsers.payload
 
 This module parse payload string and collect information from that.
 info involves (method, host, resource path, section, http_type, useragent).

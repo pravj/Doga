@@ -4,6 +4,7 @@
 Doga.thread_timer
 
 This module works as 'TimeInterval' function and invoke callback functions
+also run npyscreen.NPSApp as a separate thread using 'ThreadJob' class
 """
 
 import threading

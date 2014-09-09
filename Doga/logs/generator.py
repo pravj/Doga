@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 """
-Doga.log_generator
+Doga.logs.generator
 
 This module manage Doga log generation and writing log to log file.
 """
