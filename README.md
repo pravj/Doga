@@ -9,20 +9,27 @@ Doga
 * alert when traffic is above a customizable threshold
 
 
-Watch Doga in action
-====================
+###Watch Doga in action
 
-![Doga]()
+![Doga](https://raw.githubusercontent.com/pravj/Doga/master/docs/Doga.png?token=3437250__eyJzY29wZSI6IlJhd0Jsb2I6cHJhdmovRG9nYS9tYXN0ZXIvZG9jcy9Eb2dhLnBuZyIsImV4cGlyZXMiOjE0MTA4Nzk0NjF9--aec2b146a448733d39958c3a5fb256d1fd329acb)
 
-How it's made
-=============
+###How to let Doga watch for your traffic
+
+* clone Doga `git clone git@github.com:pravj/Doga.git`
+* run it as `sudo` : `sudo python Doga.py`
+
+> wait sometime till Doga is being converted into a pypi package.
+
+###How it's made
 
 * Doga's GUI is built on top of [npyscreen](https://pypi.python.org/pypi/npyscreen)
 * Doga uses Python's [socket interface](https://docs.python.org/2/library/socket.html) library to deal with all TCP/IP/Packets and *Bla Bla Bla* things
 
 ---
 
-> don't you know [Doga](http://en.wikipedia.org/wiki/Doga_(comics)) ? watch out then, **He is after you.**
+###What?
+
+> don't you know [Doga](http://en.wikipedia.org/wiki/Doga_(comics))? watch out then, **He is after you.**
 
 ![Doga_Rules](https://raw.githubusercontent.com/pravj/Doga/master/docs/Doga_Rules.jpg?token=3437250__eyJzY29wZSI6IlJhd0Jsb2I6cHJhdmovRG9nYS9tYXN0ZXIvZG9jcy9Eb2dhX1J1bGVzLmpwZyIsImV4cGlyZXMiOjE0MTA4NzY1NTd9--9e164f3980bed50e79ad5a68f594c3788d815eb3)
 
