@@ -1,5 +1,11 @@
 # -*- coding: utf-8 -*-
 
+"""
+Doga.log_generator
+
+This module manage Doga log generation and writing log to log file.
+"""
+
 import os
 import time
 
@@ -17,7 +23,7 @@ class LogGenerator:
         self.connect_log_file()
 
     def connect_log_file(self):
-        """ set instance variable for Doga log file
+        """ manage instance variable for Doga log file path
         """
 
         home_dir = os.path.expanduser('~')
@@ -26,12 +32,13 @@ class LogGenerator:
         self.log_file = os.path.abspath(self.log_file_path)
 
     def timestamp(self):
-        """ return current timestamp in particular format to be used in logs
+        """ return current timestamp(str) in special format to be used in logs
         """
+
         return time.strftime("%d/%b/%Y:%H:%M:%S %z")
 
     def write_log(self, log_string):
-        """ Write log string to log file
+        """ write log strings to log file
 
         param: log_string(str): formatted log string
         """
@@ -41,7 +48,7 @@ class LogGenerator:
             f.close()
 
     def generate(self, method, path, http_type, host, useragent, section):
-        """ write log string for each request
+        """ generate formatted log string for each request
 
         param: method(str) : request method type
         param: path(str) : resource path
