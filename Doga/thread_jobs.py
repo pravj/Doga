@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 
 """
-Doga.thread_timer
+Doga.thread_jobs
 
 This module works as 'TimeInterval' function and invoke callback functions
-also run npyscreen.NPSApp as a separate thread using 'ThreadJob' class
+also run npyscreen.NPSApp as a separate thread using 'Job' class
 """
 
 import threading

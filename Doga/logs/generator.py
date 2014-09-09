@@ -9,7 +9,7 @@ This module manage Doga log generation and writing log to log file.
 import os
 import time
 
-from config.configer import value
+from ..config.configer import value
 
 
 class LogGenerator:

@@ -3,13 +3,13 @@
 import argparse
 import sys
 
-from interfaces.gui import DogaGUI
-from interfaces.sockets import SocketInterface
-from parsers.packet import PacketParser
-from parsers.payload import PayloadParser
-from logs.generator import LogGenerator
 from statistics import Statistics
+from interfaces.gui import DogaGUI
 from thread_jobs import Job
+from logs.generator import LogGenerator
+from parsers.payload import PayloadParser
+from parsers.packet import PacketParser
+from interfaces.sockets import SocketInterface
 
 
 def main():
@@ -46,6 +46,3 @@ def main():
 
     # SocketInterface class interface
     socket_interface = SocketInterface(packet_parser)
-
-if __name__ == '__main__':
-    main()
