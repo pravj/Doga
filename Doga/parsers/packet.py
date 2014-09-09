@@ -96,4 +96,4 @@ class PacketParser:
                 data, ports = self.parse_tcp_header(packet_string, iph_len)
 
                 if self.verify_packet_data(ip, data, addr, ports):
-                    self.payload_parser.parse(data, addr, ports)
+                    self.payload_parser.parse(data, ports)

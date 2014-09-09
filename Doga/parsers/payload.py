@@ -25,11 +25,10 @@ class PayloadParser:
         self.host_regex = "Host:\s(.*)\r"
         self.useragent_regex = "User-Agent:\s(.*)\r"
 
-    def parse(self, data, addr, ports):
+    def parse(self, data, ports):
         """ Parse request method, path, host, useragent, httptype etc.
 
         param: data(str) : packet payload string
-        param: addr(list) : list object with source and destination IP address
         param: ports(list) : list object having source and destination ports
         """
 
@@ -45,11 +44,8 @@ class PayloadParser:
             useragent = useragent_str.group(1)
             section = path.split('?')[0]
 
+            print data
             self.log_generator.generate(
                 method, path, http_type, host, useragent, section)
         except:
-            # print req_str.groups()
-            print host_str.groups()
-            print useragent_str.groups()
-            print 'unable to parse packet payload'
-            sys.exit()
+            pass
