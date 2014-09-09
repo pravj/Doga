@@ -25,6 +25,8 @@ Doga
 * exit of application by selecting `cancel`
 * write logs to a custom log file using `sudo doga -f filename.txt`
 
+> Doga's GUI is not responsive yet so it will raise exceptions on smaller screen size.
+
 ###How it's made
 
 * Doga's GUI is built on top of [npyscreen](https://pypi.python.org/pypi/npyscreen)
