@@ -10,7 +10,7 @@ also run npyscreen.NPSApp as a separate thread using 'ThreadJob' class
 import threading
 
 
-class ThreadJob(threading.Thread):
+class Job(threading.Thread):
     def __init__(self, app):
         threading.Thread.__init__(self)
 
@@ -20,7 +20,7 @@ class ThreadJob(threading.Thread):
         self.app.run()
 
 
-class ThreadTimer(threading.Thread):
+class Timer(threading.Thread):
 
     def __init__(self, interval, event, callback):
         threading.Thread.__init__(self)

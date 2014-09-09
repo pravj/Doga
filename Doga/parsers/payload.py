@@ -44,7 +44,6 @@ class PayloadParser:
             useragent = useragent_str.group(1)
             section = path.split('?')[0]
 
-            print data
             self.log_generator.generate(
                 method, path, http_type, host, useragent, section)
         except:

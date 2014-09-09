@@ -11,8 +11,8 @@ import time
 import threading
 from collections import Counter
 
-from .config.configer import value
-from thread_timer import ThreadTimer
+from config.configer import value
+from thread_jobs import Timer
 
 
 class Statistics:
@@ -29,16 +29,16 @@ class Statistics:
         self.stop_event = threading.Event()
 
         # callback update_queue method using thread
-        self.stats_timer = ThreadTimer(10, self.stop_event, self.update_queue)
+        self.stats_timer = Timer(10, self.stop_event, self.update_queue)
         self.stats_timer.start()
 
         # callback update_alert_queue method using thread
-        self.alert_timer = ThreadTimer(
+        self.alert_timer = Timer(
             10, self.stop_event, self.update_alert_queue)
         self.alert_timer.start()
 
         # callback check_stats method using thread
-        self.stats_scanner = ThreadTimer(1, self.stop_event, self.check_stats)
+        self.stats_scanner = Timer(1, self.stop_event, self.check_stats)
         self.stats_scanner.start()
 
         # log data and alert history values

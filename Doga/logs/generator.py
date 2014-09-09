@@ -9,18 +9,26 @@ This module manage Doga log generation and writing log to log file.
 import os
 import time
 
-from ..config.configer import value
+from config.configer import value
 
 
 class LogGenerator:
 
-    def __init__(self, statistics):
+    def __init__(self, statistics, custom_file=None):
         self.statistics = statistics
 
         self.log_file_path = None
         self.log_file = None
 
         self.connect_log_file()
+
+        self.is_custom_log = False
+
+        self.custom_file = None
+
+        if custom_file is not None:
+            self.is_custom_log = True
+            self.custom_file = custom_file
 
     def connect_log_file(self):
         """ manage instance variable for Doga log file path
@@ -46,6 +54,11 @@ class LogGenerator:
         with open(self.log_file, 'a+') as f:
             f.write(log_string)
             f.close()
+
+        if (self.is_custom_log):
+            with open(self.custom_file, 'a+') as f:
+                f.write(log_string)
+                f.close()
 
     def generate(self, method, path, http_type, host, useragent, section):
         """ generate formatted log string for each request
