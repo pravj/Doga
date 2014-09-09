@@ -7,18 +7,22 @@ Doga
 * generate log in w3c log format
 * show status about total requests, maximum hits, requests in a timespan
 * alert when traffic is above a customizable threshold
+* can log in a custom log file also
 
 
 ###Watch Doga in action
 
-![Doga](https://raw.githubusercontent.com/pravj/Doga/master/docs/Doga.png?token=3437250__eyJzY29wZSI6IlJhd0Jsb2I6cHJhdmovRG9nYS9tYXN0ZXIvZG9jcy9Eb2dhLnBuZyIsImV4cGlyZXMiOjE0MTA4Nzk0NjF9--aec2b146a448733d39958c3a5fb256d1fd329acb)
+![Doga](https://raw.githubusercontent.com/pravj/Doga/master/docs/Doga.png)
 
 ###How to let Doga watch for your traffic
 
-* clone Doga `git clone git@github.com:pravj/Doga.git`
-* run it as `sudo` : `sudo python Doga.py`
+> wait is over and Doga is on pypi now : [Doga-0.0.7](https://pypi.python.org/pypi/Doga)
 
-> wait sometime till Doga is being converted into a pypi package.
+* use either `pip` or `easy_install` to install `Doga`
+* run it with `sudo doga` (as it require higher privilege than a regular user have)
+* change between logs and history section in application using `Ctrl+N`
+* exit of application by selecting `cancel`
+* write logs to a custom log file using `sudo doga -f filename.txt`
 
 ###How it's made
 
@@ -31,7 +35,7 @@ Doga
 
 > don't you know [Doga](http://en.wikipedia.org/wiki/Doga_(comics))? watch out then, **He is after you.**
 
-![Doga_Rules](https://raw.githubusercontent.com/pravj/Doga/master/docs/Doga_Rules.jpg?token=3437250__eyJzY29wZSI6IlJhd0Jsb2I6cHJhdmovRG9nYS9tYXN0ZXIvZG9jcy9Eb2dhX1J1bGVzLmpwZyIsImV4cGlyZXMiOjE0MTA4NzY1NTd9--9e164f3980bed50e79ad5a68f594c3788d815eb3)
+![Doga_Rules](https://raw.githubusercontent.com/pravj/Doga/master/docs/Doga_Rules.jpg)
 
 > *Doga Rules* by Promotional file released by Raj Comics for promotional purposes.
 > Licensed under Fair use of copyrighted material in the context of Doga (comics) via [Wikipedia](http://en.wikipedia.org/wiki/File:Doga_Rules.jpg#mediaviewer/File:Doga_Rules.jpg)

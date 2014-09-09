@@ -18,7 +18,7 @@ def main():
 
     # argument for optional custom log file
     parser.add_argument(
-        '-f', dest='file', type=str, default=None, help='custom log file')
+        '-f', dest='file', type=str, default=None, help='use custom log file')
 
     # dictionary object with all supplied arguments
     args = vars(parser.parse_args())
