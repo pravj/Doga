@@ -77,12 +77,12 @@ class DogaGUI(npyscreen.NPSApp):
         self.doga_status.editable = False
 
         # setup a section for Doga logs
-        self.doga_logs = self.window.add(npyscreen.BoxTitle, name="Doga Logs", max_width=50, relx=2, rely=7)
+        self.doga_logs = self.window.add(npyscreen.BoxTitle, name="Doga Logs", max_width=60, relx=2, rely=7)
         self.doga_logs.entry_widget.scroll_exit = True
         self.doga_logs.values = []
 
         # setup a section for Alert history
-        self.alert_history = self.window.add(npyscreen.BoxTitle, name="Alert History", max_width=50, relx=52, rely=7)
+        self.alert_history = self.window.add(npyscreen.BoxTitle, name="Alert History", max_width=80, relx=62, rely=7)
         self.alert_history.entry_widget.scroll_exit = True
         self.alert_history.values = []
 

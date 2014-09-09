@@ -8,6 +8,12 @@ Doga
 * show status about total requests, maximum hits, requests in a timespan
 * alert when traffic is above a customizable threshold
 
+
+Watch Doga in action
+====================
+
+![Doga]()
+
 How it's made
 =============
 

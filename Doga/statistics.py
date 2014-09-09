@@ -89,7 +89,7 @@ class Statistics:
         self.queue.append(host + section)
         self.alert_queue.append(host + section)
 
-        self.doga_logs.append("%s %s" % (host, section))
+        self.doga_logs.append("%s %s%s" % (method, host, section))
 
     def update_statistics(self):
         """ update usage stats template having maximum hits and count of total hits
