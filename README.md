@@ -19,6 +19,7 @@ Doga
 > wait is over and Doga is on pypi now : [Doga-0.0.7](https://pypi.python.org/pypi/Doga)
 
 * use either `pip` or `easy_install` to install `Doga`
+  * for `pip` : `sudo pip install doga`
 * run it with `sudo doga` (as it require higher privilege than a regular user have)
 * change between logs and history section in application using `Ctrl+N`
 * exit of application by selecting `cancel`
@@ -41,4 +42,4 @@ Doga
 > Licensed under Fair use of copyrighted material in the context of Doga (comics) via [Wikipedia](http://en.wikipedia.org/wiki/File:Doga_Rules.jpg#mediaviewer/File:Doga_Rules.jpg)
 
 ---
-> [Pravendra Singh](https://pravj.github.io)
+> made with *Muzi* and *Appy* by [Pravendra Singh](https://pravj.github.io) at [29.865162, 77.892397](https://www.google.co.in/maps/place/29°51'54.6"N+77°53'32.6"E/@29.8651615,77.892397,2727)
