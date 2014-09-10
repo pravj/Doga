@@ -2,9 +2,8 @@ from setuptools import setup
 
 setup(
     name='Doga',
-    version='0.0.8',
+    version='0.1.0',
     description='HTTP log monitoring console for Humans',
-    long_description=open('README.md').read(),
     keywords='http log monitor console doga',
     author='Pravendra Singh',
     author_email='hackpravj@gmail.com',
