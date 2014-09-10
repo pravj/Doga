@@ -124,7 +124,7 @@ class Statistics:
         """ check for requests and update the alert status according to that 
         """
 
-        maximum = int(value('maximum'))
+        maximum = int(value('threshold'))
 
         # we are in alert state
         if (self.is_alert):

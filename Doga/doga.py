@@ -10,6 +10,7 @@ from logs.generator import LogGenerator
 from parsers.payload import PayloadParser
 from parsers.packet import PacketParser
 from interfaces.sockets import SocketInterface
+from config.configer import update
 
 
 def main():
@@ -20,8 +21,16 @@ def main():
     parser.add_argument(
         '-f', dest='file', type=str, default=None, help='use custom log file')
 
+    # argument for setting a custom threshold value
+    parser.add_argument('-t', dest='threshold', type=str,
+                        default=None, help='use custom threshold value')
+
     # dictionary object with all supplied arguments
     args = vars(parser.parse_args())
+
+    # update config threshold value
+    if args['threshold'] is not None:
+        update('threshold', args['threshold'])
 
     # Statistics class instance
     statistics = Statistics()

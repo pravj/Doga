@@ -11,6 +11,7 @@ import threading
 
 
 class Job(threading.Thread):
+
     def __init__(self, app):
         threading.Thread.__init__(self)
 

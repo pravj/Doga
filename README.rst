@@ -23,14 +23,21 @@ How to let Doga watch for your traffic
 
     install ``doga`` to your machine, you can also use ``easy_install``
 
-``each operation with Doga requires sudo privilege to run as it explicitly uses socket interface``
+``using Doga requires sudo privilege to run as it explicitly uses socket interface``
 
 ``sudo doga``
+
     start watching for your traffic
 
 ``sudo doga -f filename.txt``
 
     write logs to a custom log file ``filename.txt`` also
+    
+``sudo doga -t VALUE``
+
+    update threshold value to ``VALUE`` on which Doga start alerting
+
+``Jump between 'Doga Logs' and 'Alert History' sections using 'Ctrl+N'``
 
 ``Doga's GUI is not responsive yet so it will raise exceptions on smaller screen size.``
 
@@ -52,5 +59,9 @@ What?
 
 .. figure:: https://raw.githubusercontent.com/pravj/Doga/master/docs/Doga_Rules.jpg
    :alt: Doga Rules
+   
+   "Doga Rules" by Promotional file released by Raj Comics for promotional purposes. Licensed under Fair use of copyrighted material in the context of Doga (comics) via `Wikipedia <http://en.wikipedia.org/wiki/File:Doga_Rules.jpg#mediaviewer/File:Doga_Rules.jpg>`__
 
-made with **Muzi** and **Appy** by `Pravendra Singh <https://pravj.github.io>`__
+------
+
+built with *Muzi* and *Appy* by `Pravendra Singh <https://pravj.github.io>`__

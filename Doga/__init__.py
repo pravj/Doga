@@ -5,4 +5,3 @@ from .parsers.payload import PayloadParser
 from .logs.generator import LogGenerator
 from statistics import Statistics
 from thread_jobs import Job
-

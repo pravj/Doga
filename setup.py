@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name='Doga',
-    version='0.1.3',
+    version='0.2.0',
     description='HTTP log monitoring console for Humans',
     long_description=open('README.rst').read(),
     keywords='http log monitor console doga',
